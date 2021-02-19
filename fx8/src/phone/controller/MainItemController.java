@@ -65,7 +65,7 @@ public class MainItemController {
 		if(!flag)
 			infoBox("Please enter correct username and password",null,"Failed");
 		else {
-			infoBox("Login Successful , " + username,null,"Success");	
+			// infoBox("Login Successful , " + username,null,"Success");	
 			Main.main_username = username;
 			Main.main_password = password;
 			Main.login = "ON";

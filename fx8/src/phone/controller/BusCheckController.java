@@ -5,6 +5,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
@@ -47,6 +51,14 @@ public class BusCheckController {
 	@FXML
 	private TableColumn<users, String> col_date;
 	@FXML
+	private void initialize() {
+		Date date = new Date();
+		Instant instant = date.toInstant();
+		LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+		txtdate.setValue(localDate);
+	}
+	
+	@FXML
 	void onClickBack(ActionEvent event) throws IOException {
 		try {
 			AnchorPane root = FXMLLoader.load(getClass().getResource("../view/BusMain.fxml"));
@@ -56,9 +68,12 @@ public class BusCheckController {
 		}
 	}
 
-
 	@FXML
 	void onClickSearch(ActionEvent event) {
+    	if(txtdate.getValue() == null) {
+    		JOptionPane.showMessageDialog(null, "Please, select the date !");
+    		return;
+    	}
 		int year = (txtdate.getValue().getYear());
 		int month = (txtdate.getValue().getMonthValue());
 		int day = (txtdate.getValue().getDayOfMonth());

@@ -25,18 +25,11 @@ public class MainItemController {
 	Connection conn = null;
 	Window owner;
 
-	@FXML
-	public TextField txt_username;
-
-	@FXML
-	public PasswordField txt_password;
-
-	@FXML
-	private Label lblname;
-	@FXML
-	private AnchorPane loginpane;
-	@FXML
-	private AnchorPane logoutpane;
+	@FXML	public TextField txt_username;
+	@FXML	public PasswordField txt_password;
+	@FXML	private Label lblname;
+	@FXML	private AnchorPane loginpane;
+	@FXML	private AnchorPane logoutpane;
 
 	@FXML
 	private void initialize() {
@@ -83,7 +76,6 @@ public class MainItemController {
 			lblname.setText(s1);
 			logoutpane.setVisible(true);
 		}
-
 	}
 
 	@FXML
@@ -122,7 +114,6 @@ public class MainItemController {
 
 	@FXML
 	void onClickCafe(MouseEvent event) {
-		owner = txt_username.getScene().getWindow();
 		if(Main.login.equals("ON"))
 			try {
 				root = FXMLLoader.load(getClass().getResource("../view/CafeMain.fxml"));
@@ -139,7 +130,6 @@ public class MainItemController {
 	}
 	@FXML
 	void onClickAdress(MouseEvent event) {
-		owner = txt_username.getScene().getWindow();
 		if(Main.login.equals("ON"))
 			try {
 				root = FXMLLoader.load(getClass().getResource("../view/AddressMain.fxml"));
@@ -157,7 +147,6 @@ public class MainItemController {
 
 	@FXML
 	void onClickPizza(MouseEvent event) {
-		owner = txt_username.getScene().getWindow();
 		if(Main.login.equals("ON"))
 			try {
 				root = FXMLLoader.load(getClass().getResource("../view/PizzaMain.fxml"));
@@ -174,7 +163,6 @@ public class MainItemController {
 	}
 	@FXML
 	void onClickBus(MouseEvent event) {
-		owner = txt_username.getScene().getWindow();
 		if(Main.login.equals("ON"))
 			try {
 				root = FXMLLoader.load(getClass().getResource("../view/BusMain.fxml"));
@@ -193,7 +181,6 @@ public class MainItemController {
 
 	@FXML
 	void onClickRestaurant(MouseEvent event) {
-		owner = txt_username.getScene().getWindow();
 		if(Main.login.equals("ON"))
 			try {
 				root = FXMLLoader.load(getClass().getResource("../view/RestaurantMain.fxml"));
@@ -211,7 +198,6 @@ public class MainItemController {
 
 	@FXML
 	void onClickEmployee(MouseEvent event) {
-		owner = txt_username.getScene().getWindow();
 		if(Main.login.equals("ON"))
 			try {
 				root = FXMLLoader.load(getClass().getResource("../view/EmployeeMain.fxml"));

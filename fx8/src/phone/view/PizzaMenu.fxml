@@ -94,7 +94,7 @@
                               <Font name="Yj CHMSOOT Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="b3" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickb3" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: red;" text="종료" textFill="#e2e5ee">
+                        <Button fx:id="b3" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickb3" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: red;" text="Home" textFill="#e2e5ee">
                            <font>
                               <Font name="Yj CHMSOOT Bold" size="14.0" />
                            </font>

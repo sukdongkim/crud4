@@ -38,33 +38,15 @@ public class MainViewController2 {
 	
 	Main main= new Main();
 
-    @FXML
-    private TableView<Student> tableContent;
-
-    @FXML
-    private TableColumn<Student, String> col_id;
-
-    @FXML
-    private TableColumn<Student, String> col_name;
-
-    @FXML
-    private TableColumn<Student, String> col_email;
-
-    @FXML
-    private TableColumn<Student, String> col_phone;
-
-    @FXML
-    private TextField txt_id;
-
-    @FXML
-    private TextField txt_email;
-
-    @FXML
-    private TextField txt_phone;
-
-    @FXML
-    private TextField txt_name;
-    
+    @FXML    private TableView<Student> tableContent;
+    @FXML    private TableColumn<Student, String> col_id;
+    @FXML    private TableColumn<Student, String> col_name;
+    @FXML    private TableColumn<Student, String> col_email;
+    @FXML    private TableColumn<Student, String> col_phone;
+    @FXML    private TextField txt_id;
+    @FXML    private TextField txt_email;
+    @FXML    private TextField txt_phone;
+    @FXML    private TextField txt_name;   
     @FXML
     private void initialize() {
     	conn = mysqlconnect.ConnectDb();
@@ -79,7 +61,6 @@ public class MainViewController2 {
 
 			list = FXCollections.observableArrayList();
 			while(rs.next()) {
-
 				String r1 = rs.getString("id");
 				String r2 = rs.getString("name");
 				String r3 = rs.getString("email");
@@ -94,8 +75,7 @@ public class MainViewController2 {
 				col_email.setCellValueFactory(new PropertyValueFactory<Student,String>("email"));
 				col_phone.setCellValueFactory(new PropertyValueFactory<Student,String>("phone"));										
  
-				tableContent.setItems(list);
-				
+				tableContent.setItems(list);				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -156,7 +136,6 @@ public class MainViewController2 {
 
     @FXML
     void onClickDelete(ActionEvent event) {
-//		String r1 = txt_id.getText();
 		if(index.length()==0) {
 			JOptionPane.showMessageDialog(null, "No id");
 			return ;
@@ -184,7 +163,6 @@ public class MainViewController2 {
 		int dialogresult = JOptionPane.showConfirmDialog(null, "Do you want to finish ?");
 		if(dialogresult == JOptionPane.YES_NO_OPTION)
 		{
-//			JOptionPane.showMessageDialog(null, "Bye !!!");
 			System.exit(0);
 		}
 		
@@ -213,8 +191,6 @@ public class MainViewController2 {
 			pst.setString(2, r3);
 			pst.setString(3, r4);
 			pst.setString(4, r1);
-
-
 			if(index.equals(r1)) {
 				JOptionPane.showMessageDialog(null, "Student update!");
 				pst.executeUpdate();
@@ -241,7 +217,6 @@ public class MainViewController2 {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
- 
     }
 
 	public void cleartext() {
@@ -250,5 +225,4 @@ public class MainViewController2 {
 		txt_email.setText("");
 		txt_phone.setText("");
 	}
-
 }

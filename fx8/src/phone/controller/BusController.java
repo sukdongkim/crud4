@@ -54,7 +54,7 @@ public class BusController {
 	private void initialize() {
 		conn = mysqlconnect.ConnectDb();
 		try {
-			pst = conn.prepareStatement("select * from busses where date =? and seatno=?");			
+			pst = conn.prepareStatement("select * from bus where date =? and seatno=?");			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -188,7 +188,7 @@ public class BusController {
 			if(srs.next()) {
 				JOptionPane.showMessageDialog(null, "This seat is Already booked!");
 			} else {
-				pst = conn.prepareStatement("insert into busses (name, seatno, price,date) values (?,?,?,?)");
+				pst = conn.prepareStatement("insert into bus (name, seatno, price,date) values (?,?,?,?)");
 				pst.setString(1, customer);
 				pst.setInt(2, seat);
 				pst.setInt(3, price);
@@ -222,6 +222,15 @@ public class BusController {
     void onClickCheck(ActionEvent event) {
 		try {
 			root = FXMLLoader.load(getClass().getResource("../view/BusCheck.fxml"));
+			Main.mainLayout.setCenter(root);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+    }
+    @FXML
+    void onClickUpdate(ActionEvent event) {
+		try {
+			root = FXMLLoader.load(getClass().getResource("../view/BusUpdate.fxml"));
 			Main.mainLayout.setCenter(root);
 		} catch(Exception e) {
 			e.printStackTrace();

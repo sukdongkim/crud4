@@ -81,19 +81,21 @@ public class BusCheckController {
 		ObservableList<users> list = FXCollections.observableArrayList();
 		conn = mysqlconnect.ConnectDb();
 		try {
-			pst = conn.prepareStatement("select * from busses where date =?");
+			pst = conn.prepareStatement("select * from bus where date =?");
 			pst.setString(1, date);	
 			srs = pst.executeQuery();
-			if(!srs.next()) {
-				JOptionPane.showMessageDialog(null, "No Seat Booked!");				
+			if(!srs.next()) {				
+				JOptionPane.showMessageDialog(null, "No Seat Booked!");		
+				tableContent.setItems(list);
 			} else 			
 				do {
+					int r0 = srs.getInt("id");
 					String r1 = srs.getString("name");
 					int r2 = srs.getInt("seatno");
 					int r3 = srs.getInt("price");
 					String r4 = srs.getString("date");
 
-					list.add(new users(r1, r2,r3,r4));
+					list.add(new users(r0,r1, r2,r3,r4));
 
 					col_name.setCellValueFactory(new PropertyValueFactory<users,String>("name"));
 					col_seat.setCellValueFactory(new PropertyValueFactory<users,Integer>("seatno"));

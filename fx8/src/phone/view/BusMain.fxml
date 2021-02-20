@@ -133,7 +133,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="551.0" layoutY="105.0" mnemonicParsing="false" onAction="#onClickStop" prefHeight="51.0" prefWidth="98.0" style="-fx-background-color: pink;" text="Home" textFill="#1d44f0">
+      <Button layoutX="615.0" layoutY="107.0" mnemonicParsing="false" onAction="#onClickStop" prefHeight="51.0" prefWidth="98.0" style="-fx-background-color: pink;" text="Home" textFill="#1d44f0">
          <font>
             <Font name="Malgun Gothic Bold" size="18.0" />
          </font>
@@ -146,5 +146,10 @@
       <Separator layoutX="24.0" layoutY="397.0" prefHeight="7.0" prefWidth="376.0" />
       <Separator layoutX="25.0" layoutY="305.0" prefHeight="7.0" prefWidth="376.0" />
       <Separator layoutX="24.0" layoutY="149.0" prefHeight="7.0" prefWidth="376.0" />
+      <Button layoutX="459.0" layoutY="107.0" mnemonicParsing="false" onAction="#onClickUpdate" prefHeight="51.0" prefWidth="98.0" style="-fx-background-color: cyan;" text="Update" textFill="#1d44f0">
+         <font>
+            <Font name="Malgun Gothic Bold" size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

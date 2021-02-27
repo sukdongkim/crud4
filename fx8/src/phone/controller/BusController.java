@@ -18,7 +18,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -47,8 +46,6 @@ public class BusController {
 
     @FXML
     private TextArea txtbill;
-    @FXML
-    private Label label;
     
     ObservableList<String> comboBoxList = 
 			FXCollections.observableArrayList("유아 : 2,000원","학생 : 3,000원","일반 : 5,000원");
@@ -253,13 +250,13 @@ public class BusController {
     public void bill() {
     	String customer = txtcustomer.getText();
     	int seat = seatno;
+   // 	int price = Integer.parseInt(txtprice.getText());
     	
     	int year = (txtdate.getValue().getYear());
     	int month = (txtdate.getValue().getMonthValue());
     	int day = (txtdate.getValue().getDayOfMonth());
     	
     	String date = ""+year+"-"+month+"-"+day;
-    	label.setText("");
     	
     	txtbill.setText(txtbill.getText()+"**********************************************************\n");
     	txtbill.setText(txtbill.getText()+"****************    bill    **********************************\n");

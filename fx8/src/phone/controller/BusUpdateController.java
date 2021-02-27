@@ -180,6 +180,7 @@ public class BusUpdateController {
 		try {
 			pst = conn.prepareStatement("update bus set name= ?, seatno=?, price=?, date=? where id = ?");
 			pst.setString(1, r1);
+			if(r2.isEmpty()) return;
 			int i1 = Integer.parseInt(r2);
 			pst.setInt(2, i1);
 			int i2 = Integer.parseInt(r3);
@@ -212,10 +213,12 @@ public class BusUpdateController {
 	@FXML
 	void onMouseClicked(MouseEvent event) {
 		TableViewSelectionModel<users> model = tableContent.getSelectionModel();
-
 		users s = (users)model.getSelectedItem();
+		
+		if(s == null) return;
 		txt_name.setText(s.getName());
 		String bs = Integer.toString(s.getSeatno());
+		if(bs.isEmpty()) return;
 		txt_seat.setText(bs);
 		bs= Integer.toString(s.getPrice());
 		txt_price.setText(bs);

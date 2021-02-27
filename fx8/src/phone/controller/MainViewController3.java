@@ -56,6 +56,7 @@ public class MainViewController3 {
 		try {
 			AnchorPane root = FXMLLoader.load(getClass().getResource("../view/AddressMain.fxml"));
 			Main.mainLayout.setCenter(root);
+			Main.setPrimaryStage("林家废 包府");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

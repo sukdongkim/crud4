@@ -1,7 +1,12 @@
 package phone.controller;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
+
+import javax.swing.JOptionPane;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,13 +28,19 @@ public class MainItemController {
 	Parent root;
 	Main main = new Main();
 	Connection conn = null;
+	ResultSet srs;
+	PreparedStatement pst = null;
 	Window owner;
 
 	@FXML	public TextField txt_username;
 	@FXML	public PasswordField txt_password;
+	@FXML   private TextField txt_username1;
+	@FXML   private PasswordField txt_password1;
+	@FXML   private TextField txt_fullname1;
 	@FXML	private Label lblname;
 	@FXML	private AnchorPane loginpane;
 	@FXML	private AnchorPane logoutpane;
+	@FXML   private AnchorPane signupane;
 
 	@FXML
 	private void initialize() {
@@ -42,6 +53,7 @@ public class MainItemController {
 			loginpane.setVisible(false);
 			lblname.setText(s1);
 			logoutpane.setVisible(true);
+			signupane.setVisible(false);
 		}
 	}
 
@@ -75,6 +87,7 @@ public class MainItemController {
 			loginpane.setVisible(false);
 			lblname.setText(s1);
 			logoutpane.setVisible(true);
+			signupane.setVisible(false);
 		}
 	}
 
@@ -91,8 +104,93 @@ public class MainItemController {
 
 		loginpane.setVisible(true);
 		logoutpane.setVisible(false);	
+		signupane.setVisible(false);
 		Main.login = "OFF";
 
+	}
+	@FXML
+	void onClickSignUp(ActionEvent event) {
+		loginpane.setVisible(false);
+		logoutpane.setVisible(false);
+		signupane.setVisible(true);
+	}
+    @FXML
+    void onClickCancel(ActionEvent event) {
+		try {
+			root = FXMLLoader.load(getClass().getResource("../view/MainItem.fxml"));
+			Main.mainLayout.setCenter(root);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+    }
+	@FXML
+	void onClickSignup(ActionEvent event) {
+		conn = mysqlconnect.ConnectDb();
+
+		String fullname;
+		if(txt_fullname1.getText().isEmpty())
+			fullname = "";
+		else fullname = txt_fullname1.getText();
+		String username = txt_username1.getText();
+		String password = txt_password1.getText();
+
+		if(username.length()==0) {
+			JOptionPane.showMessageDialog(null, "Please, enter the Username");
+			return ;
+		}
+		if(password.length()==0) {
+			JOptionPane.showMessageDialog(null, "Please, enter the Password");
+			return ;
+		}
+		int k=0;
+		try {
+			pst = conn.prepareStatement("select * from users where username =?");
+			pst.setString(1, username);	
+			srs = pst.executeQuery();
+			if(!srs.next()) {
+				pst = conn.prepareStatement("insert into users (fullname, username, password) values (?,?,?)");
+				pst.setString(1, fullname);
+				pst.setString(2, username);
+				pst.setString(3, password);
+				k =pst.executeUpdate();
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "사용자 중복!");
+				txt_fullname1.setText("");
+				txt_username1.setText("");
+				txt_password1.setText("");
+				return;
+			}
+			if(k==1) {
+				JOptionPane.showMessageDialog(null, "New User !!!");
+			} else {
+				JOptionPane.showMessageDialog(null, "Error!");
+			}
+		} catch(SQLIntegrityConstraintViolationException e) {
+			JOptionPane.showMessageDialog(null, "Duplicate!");
+
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Main.main_username = "";
+		Main.main_password = "";
+
+		Main.login = "OFF";
+
+		txt_username.setText("");
+		txt_password.setText("");
+		if(txt_fullname1 != null)
+			txt_fullname1.setText("");
+		else 
+			txt_fullname1.setText("");
+		txt_username1.setText("");
+		txt_password1.setText("");
+
+		loginpane.setVisible(true);
+		logoutpane.setVisible(false);	
+		signupane.setVisible(false);
+		Main.login = "OFF";
 	}
 
 	public static void infoBox(String infoMessage, String headerText, String title) {
@@ -118,6 +216,7 @@ public class MainItemController {
 			try {
 				root = FXMLLoader.load(getClass().getResource("../view/CafeMain.fxml"));
 				Main.mainLayout.setCenter(root);
+				Main.setPrimaryStage("카페 관리");
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -134,6 +233,7 @@ public class MainItemController {
 			try {
 				root = FXMLLoader.load(getClass().getResource("../view/AddressMain.fxml"));
 				Main.mainLayout.setCenter(root);
+				Main.setPrimaryStage("주소록 관리");
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -151,6 +251,7 @@ public class MainItemController {
 			try {
 				root = FXMLLoader.load(getClass().getResource("../view/PizzaMain.fxml"));
 				Main.mainLayout.setCenter(root);
+				Main.setPrimaryStage("피자 관리");
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -167,6 +268,7 @@ public class MainItemController {
 			try {
 				root = FXMLLoader.load(getClass().getResource("../view/BusMain.fxml"));
 				Main.mainLayout.setCenter(root);
+				Main.setPrimaryStage("버스 예약 관리");
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -185,6 +287,7 @@ public class MainItemController {
 			try {
 				root = FXMLLoader.load(getClass().getResource("../view/RestaurantMain.fxml"));
 				Main.mainLayout.setCenter(root);
+				Main.setPrimaryStage("식당 관리");
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -202,6 +305,7 @@ public class MainItemController {
 			try {
 				root = FXMLLoader.load(getClass().getResource("../view/EmployeeMain.fxml"));
 				Main.mainLayout.setCenter(root);
+				Main.setPrimaryStage("고용 관리");
 			} catch(Exception e) {
 				e.printStackTrace();
 			}

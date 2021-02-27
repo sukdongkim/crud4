@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #4287f5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phone.controller.BusController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #4287f5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phone.controller.BusController">
    <children>
       <Label layoutX="114.0" layoutY="32.0" text="Bus Booking System" textFill="#da6943">
          <font>
@@ -102,7 +102,7 @@
             </Button>
          </children>
       </GridPane>
-      <Button layoutX="26.0" layoutY="419.0" mnemonicParsing="false" onAction="#onClickBook" prefHeight="51.0" prefWidth="98.0" text="Book">
+      <Button layoutX="26.0" layoutY="419.0" mnemonicParsing="false" onAction="#onClickBook" prefHeight="51.0" prefWidth="98.0" style="-fx-background-color: pink;" text="Book" textFill="#1d44f0">
          <font>
             <Font size="18.0" />
          </font>
@@ -130,10 +130,10 @@
       <ComboBox fx:id="comboPrice" layoutX="238.0" layoutY="342.0" onAction="#onClickCombo" prefHeight="43.0" prefWidth="161.0" promptText="Price" />
       <Button layoutX="164.0" layoutY="419.0" mnemonicParsing="false" onAction="#onClickContinue" prefHeight="51.0" prefWidth="98.0" text="Continue">
          <font>
-            <Font size="18.0" />
+            <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="615.0" layoutY="107.0" mnemonicParsing="false" onAction="#onClickStop" prefHeight="51.0" prefWidth="98.0" style="-fx-background-color: pink;" text="Home" textFill="#1d44f0">
+      <Button layoutX="615.0" layoutY="107.0" mnemonicParsing="false" onAction="#onClickStop" prefHeight="51.0" prefWidth="98.0" text="Home" textFill="#57575b">
          <font>
             <Font name="Malgun Gothic Bold" size="18.0" />
          </font>
@@ -146,7 +146,7 @@
       <Separator layoutX="24.0" layoutY="397.0" prefHeight="7.0" prefWidth="376.0" />
       <Separator layoutX="25.0" layoutY="305.0" prefHeight="7.0" prefWidth="376.0" />
       <Separator layoutX="24.0" layoutY="149.0" prefHeight="7.0" prefWidth="376.0" />
-      <Button layoutX="459.0" layoutY="107.0" mnemonicParsing="false" onAction="#onClickUpdate" prefHeight="51.0" prefWidth="98.0" style="-fx-background-color: cyan;" text="Update" textFill="#1d44f0">
+      <Button layoutX="459.0" layoutY="107.0" mnemonicParsing="false" onAction="#onClickUpdate" prefHeight="51.0" prefWidth="98.0" style="-fx-background-color: cyan;" text="Update" textFill="#4c68da">
          <font>
             <Font name="Malgun Gothic Bold" size="18.0" />
          </font>

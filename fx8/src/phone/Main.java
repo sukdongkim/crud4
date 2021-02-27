@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -23,6 +24,8 @@ public class Main extends Application {
 	
 	public static String main_username;
 	public static String main_password;
+	
+	Parent root;
 
 	
 	@Override
@@ -53,7 +56,7 @@ public class Main extends Application {
 		
 	public void showMainItems() {
 		try {
-			AnchorPane root = FXMLLoader.load(getClass().getResource("view/MainItem.fxml"));
+			root = FXMLLoader.load(getClass().getResource("view/MainItem.fxml"));
 			mainLayout.setCenter(root);
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -122,6 +125,10 @@ public class Main extends Application {
 	
 	public void stopMainView() {
 		primaryStage.close();
+	}
+	
+	public static void setPrimaryStage(String str) {
+		primaryStage.setTitle(str);
 	}
 	
 	public static void stopstageView() {
